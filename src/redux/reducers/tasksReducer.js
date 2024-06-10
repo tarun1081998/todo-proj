@@ -5,15 +5,15 @@ const initialState = {
   tasks: [],
 };
 
-const taskReducer = (state = initialState, action, data) => {
-  switch (action.type) {
+const taskReducer = (state = initialState, data) => {
+  switch (data.type) {
     case ADDTASK:
       return {
-        tasks:[...state.tasks, data],
+        tasks:[...state.tasks, data.payload],
       };
     case DELETETASK:
       return {
-        tasks: state.tasks.filter(x=>x.id !== data.id),
+        tasks: state.tasks.filter(x=>x.id !== data.payload.id),
       };
     default:
       return state;
