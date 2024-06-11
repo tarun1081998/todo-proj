@@ -10,7 +10,7 @@ function App() {
     <div className='task-container'>
       <AddForm />
       <div className='task-'>
-        {tasks.map((task)=><Task key={task.id} task={task} />)}
+        {tasks.map((task,index)=><Task key={task.id} task={task} sr={index+1}/>)}
       </div>
     </div>
     

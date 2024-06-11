@@ -12,10 +12,16 @@ const AddForm = (props) =>{
         dispatch(addTaskAction({taskName: taskName, id : uuidv4()}));
         setTaskname('');
     }
+
+    const handleKeyPress = (event) => {
+        if (event.key === 'Enter') {
+          addTask();
+        }
+      };
     
     return(
         <div className="form-container">
-            <input value={taskName} onChange={(e)=>setTaskname(e.target.value)} className="task-input"/>
+            <input value={taskName} onChange={(e)=>setTaskname(e.target.value)} className="task-input" onKeyDown={handleKeyPress}/>
             <img src={addIcon} onClick={addTask} height="20px" className="add-icon" style={{cursor:"pointer"}}/>
         </div>
     )
