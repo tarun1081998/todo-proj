@@ -73,3 +73,9 @@ input::placeholder {
   z-index: 10;
   background-color: white;
 }
+
+.filter-container{
+  display: flex;
+  justify-content: center;
+  margin: 50px
+}

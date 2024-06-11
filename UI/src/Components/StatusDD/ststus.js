@@ -1,31 +1,26 @@
 import React, { useState } from "react";
+import { TO_DO, IN_PROGRESS, DONE } from "../../constants";
+import { useDispatch } from "react-redux";
+import { updateTaskAction } from "../../redux/actions/actions";
 
 const StatusDD = (props) =>{
-    const statusList = ["To Do", "In Progress", "Done"]
-    const [selectedStatus, setSelectedStatus] = useState(props.status ? props.status : statusList[0])
-    const [showItems, setShowItems] = useState(false);
+    const [selectedStatus, setSelectedStatus] = useState(props.task.status ? props.task.status : TO_DO);
+    const dispatch = useDispatch();
 
     const selectStatus = (s) =>{
         setSelectedStatus(s);
-        setShowItems(false);
+        dispatch(updateTaskAction({...props.task,status:s}))
     }
 
     return(
-        <div className="dd-container" onClick={()=>setShowItems(!showItems)}>
-            <div style={{width:"95px",border:"1px solid",display:"flex", justifyContent:"space-between"}}>{
-                selectedStatus}
-                <span className="dd-icon">^</span>
-            </div>
-            {showItems && 
-                <div className="dd-items">
-                    {statusList.map((s)=>
-                        <div onClick={()=>selectStatus(s)} style={{width:"95px",border:"1px solid"}}>
-                            {s}
-                        </div>
-                    )}
-                </div>
-            }
+        <div className="dd-container"> 
+            <select value={selectedStatus} onChange={(e) => selectStatus(e.target.value)}>
+                <option value={TO_DO}>To-do</option>
+                <option value={IN_PROGRESS}>In Progress</option>
+                <option value={DONE}>Done</option>
+            </select>
         </div>
+        
     )
 }
 

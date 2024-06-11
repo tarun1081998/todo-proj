@@ -3,14 +3,16 @@ import { useDispatch } from "react-redux";
 import { addTaskAction } from "../../redux/actions/actions";
 import { v4 as uuidv4 } from 'uuid';
 import addIcon from "../../assets/add.png";
+import { ALL, TO_DO } from "../../constants";
 
-const AddForm = (props) =>{
+const AddForm = ({setFilter}) =>{
     const [taskName, setTaskname] = useState('');
     const dispatch = useDispatch()
     
     const addTask = () => {
-        dispatch(addTaskAction({taskName: taskName, id : uuidv4()}));
+        dispatch(addTaskAction({taskName: taskName, id : uuidv4(), status: TO_DO}));
         setTaskname('');
+        setFilter(ALL)
     }
 
     const handleKeyPress = (event) => {

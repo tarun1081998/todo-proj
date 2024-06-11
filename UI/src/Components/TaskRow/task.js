@@ -14,10 +14,9 @@ const Task = (props) =>{
         <div className="task-row">
             <span className="task-text">{props.sr}. {taskName}</span>
             <div style={{display:"flex"}}>
-                <StatusDD />
+                <StatusDD task={props.task}/>
                 <img src={delIcon} onClick={deleteTask} style={{paddingRight:"25px", cursor:"pointer"}} height="30px" alt=""/>
             </div>
-            
         </div>
         
 
